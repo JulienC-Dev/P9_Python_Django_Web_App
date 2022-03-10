@@ -2,14 +2,14 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic.list import ListView
 from .models import Review, Ticket
 from authentication.models import User
-from litreview.forms import Create_ticket, Modified_ticket, Create_critique
+from litreview.forms import CreateTicket, ModifiedTicket, CreateCritique
 from django.views.generic import CreateView, UpdateView, View
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
 
-class Flux(LoginRequiredMixin, ListView):
+class FluxView(LoginRequiredMixin, ListView):
     template_name = 'litreview/flux.html'
     model = Review
     context_object_name = 'reviews'
@@ -22,9 +22,9 @@ class Flux(LoginRequiredMixin, ListView):
         return qs
 
 
-class CreateTicket(LoginRequiredMixin, CreateView):
+class CreateTicketView(LoginRequiredMixin, CreateView):
     template_name = 'litreview/createticket.html'
-    form_class = Create_ticket
+    form_class = CreateTicket
     success_url = reverse_lazy('litreview-flux')
     success_message = "Your profile was created successfully"
 
@@ -36,7 +36,7 @@ class CreateTicket(LoginRequiredMixin, CreateView):
 class CritiqueAnswerCreateview(LoginRequiredMixin, CreateView):
     template_name = "litreview/critiqueanswercreate.html"
     success_url = reverse_lazy('litreview-flux')
-    form_class = Create_critique
+    form_class = CreateCritique
 
     def get_context_data(self, **kwargs):
         object = super(CritiqueAnswerCreateview, self).get_context_data(**kwargs)
@@ -58,7 +58,7 @@ class CritiqueAnswerCreateview(LoginRequiredMixin, CreateView):
 
 class CritiqueAnswerModified(LoginRequiredMixin, UpdateView):
     template_name = 'litreview/critiqueanswermodified.html'
-    form_class = Create_critique
+    form_class = CreateCritique
     model = Review
     success_url = reverse_lazy('litreview-posts')
 
@@ -97,12 +97,12 @@ class PostUserListView(LoginRequiredMixin, ListView):
 
 class TicketModifiedUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'litreview/modifiedticket.html'
-    form_class = Modified_ticket
+    form_class = ModifiedTicket
     model = Ticket
     success_url = reverse_lazy('litreview-flux')
 
 
-class Abonnement(LoginRequiredMixin, View):
+class AbonnementView(LoginRequiredMixin, View):
     template_name = 'litreview/abonnement.html'
 
     def get(self, request):
@@ -155,8 +155,8 @@ class Abonnement(LoginRequiredMixin, View):
 @login_required()
 def ticket_create(request):
     if request.method == 'POST':
-        ticket_form = Create_ticket(request.POST)
-        critique_form = Create_critique(request.POST)
+        ticket_form = CreateTicket(request.POST)
+        critique_form = CreateCritique(request.POST)
         if ticket_form.is_valid() and critique_form.is_valid():
             ticket_form.instance.user = request.user
             ticket = ticket_form.save()
@@ -165,7 +165,7 @@ def ticket_create(request):
             critique_form.save()
             return redirect('litreview-flux')
     else:
-        ticket_form = Create_ticket()
-        critique_form = Create_critique()
+        ticket_form = CreateTicket()
+        critique_form = CreateCritique()
     return render(request, 'litreview/createcritique.html', {'ticket_form': ticket_form, 'critique_form': critique_form})
 
