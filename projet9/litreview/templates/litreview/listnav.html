@@ -1,0 +1,31 @@
+{% extends "litreview/base.html" %}
+
+{% block nav %}
+<header>
+    <h1 id="name-site">Litreview</h1>
+    <div id="nav-head">
+        <ol class="nav-list-main">
+          <li class = "nav-list-head">
+              <div ><a href="{% url 'litreview-flux' %}">
+              <button class= "button-connexion" type="button">Flux</button></a>
+              </div>
+          </li>
+          <li class = "nav-list-head">
+              <div ><a href="{% url 'litreview-posts' %}">
+              <button class= "button-connexion" type="button">Posts</button></a>
+              </div>
+          </li>
+          <li class = "nav-list-head">
+              <div ><a href="{% url 'litreview-Abonnement' %}">
+              <button class= "button-connexion" type="button">Abonnement</button></a>
+              </div>
+          </li>
+          <li class = "nav-list-head">
+              <div ><a href="{% url 'logout-user' %}">
+              <button class= "button-connexion" type="button">Se déconnecter</button></a>
+              </div>
+          </li>
+        </ol>
+    </div>
+</header>
+{% endblock %}

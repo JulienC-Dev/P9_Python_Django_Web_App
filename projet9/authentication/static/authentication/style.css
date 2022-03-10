@@ -1,0 +1,535 @@
+body{
+background-color: gainsboro !important;;
+
+}
+
+ol {
+list-style-type: none;
+display:flex;
+position: relative;
+left: 700px;
+
+}
+
+
+header {
+display:flex;
+padding-top: 1rem;
+border-bottom:2px solid black;
+background-color: grey;
+}
+
+
+li {
+padding : 1rem;
+}
+
+#name-site {
+position: relative;
+left: 400px;
+}
+
+.home-page {
+padding-top:150px;
+display:flex;
+justify-content:space-around;
+}
+
+#connexion{
+height:210px;
+border:2px solid black;
+width:500px;
+
+}
+
+#connexion>.titre{
+position:relative;
+top:17px;
+left:20px;
+}
+
+.form-connexion{
+position:relative;
+top:10px;
+left:30px;
+}
+
+#inscription{
+height:210px;
+border:2px solid black;
+width:450px;
+}
+#inscription>.titre{
+position:relative;
+top:20px;
+left:20px;
+}
+.button-inscription{
+position:relative;
+top:100px;
+left:300px;
+}
+.button-connexion{
+position:relative;
+top:6px;
+left:320px;
+}
+
+.button-retour-logout{
+position:relative;
+top:0px;
+left:0px;
+}
+
+.nav-list-main{
+left:347px;
+}
+
+.success-message-login{
+position: relative;
+top:-15px;
+left:405px;
+}
+
+#name-site
+{
+font-size:3rem;
+}
+
+.inscription-page{
+position: relative;
+left: 400px;
+top: 100px;
+border:2px solid black;
+margin-block:3em;
+width:610px;
+padding-top:1em;
+padding-left:2em;
+font-size:1rem;
+}
+
+.helptext{
+display:inline-block
+}
+
+.inscription-page>form>ul{
+list-style-type: none;
+padding-left:0px;
+position:relative;
+left: -15px;
+}
+.form-connexion>form>ul{
+position:absolute;
+left: -50px;
+top:190px;
+list-style-type: none;
+}
+
+
+.inscription-page>form>ul>li{
+
+padding-top:3px;
+padding-bottom:2px;
+}
+
+.inscription-button{
+position: relative;
+left: 360px;
+top: 10px;
+}
+.retour-home-button{
+position: relative;
+left: 470px;
+top: -19px;
+}
+
+
+
+.inscription-page>h1{
+left:40px;
+font-size:2rem;
+padding-bottom:0.5em;
+}
+
+
+
+.reviewposts {
+width: 700px;
+border:2px solid black;
+position: relative;
+left: 360px;
+top: 100px;
+margin-block:3em;
+height:689px;
+}
+
+.reviewflux{
+width: 700px;
+border:2px solid black;
+position: relative;
+left: 360px;
+top: 100px;
+margin-block:3em;
+height:420px;
+}
+
+.modifier-critique-answer {
+width: 500px;
+border:2px solid black;
+position: relative;
+left: 500px;
+top: 100px;
+margin-block:3em;
+}
+#answer-critique-title{
+font-size: 1em;
+padding-top:1.4em;
+padding-bottom:1em;
+padding-left:1em;
+}
+.modifier-critique{
+margin-left: 2em;
+margin-right: 0.5em;
+margin-top: 30px;
+margin-bottom:2em;
+
+}
+.btn-critique{
+left:300px;
+top:23px;
+position:relative
+}
+.answer-critique-titre{
+left:10px;
+position:relative
+}
+.commentaire-critique{
+top:15px;
+position:relative
+}
+.rating-form-answer{
+left:10px;
+top:10px;
+position:relative
+}
+.abonnement {
+width: 1320px;
+position: relative;
+left: 50px;
+top: 100px;
+
+}
+
+.abonnement>.searchuser {
+
+padding-bottom: 40px;
+width: 500px;
+padding-left:40px;
+left: 400px;
+position: relative;
+border:2px solid black;
+margin-block:3em;
+}
+
+.abonnement>.abonnements {
+
+padding-bottom: 40px;
+padding-top: 5px;
+width: 500px;
+padding-left:40px;
+left: 400px;
+position: relative;
+border:2px solid black;
+margin-block:3em;
+}
+
+.abonnement>.abonnes{
+padding-bottom: 40px;
+padding-top: 5px;
+width: 500px;
+padding-left:40px;
+left: 400px;
+position: relative;
+border:2px solid black;
+margin-block:3em;
+margin-bottom:10em;
+}
+
+.modifiedticket {
+width: 500px;
+position: relative;
+left: 500px;
+top: 100px;
+border:2px solid black;
+padding-block:2em;
+padding-left:2em;
+}
+
+.titre{
+font-size:1.6em;
+padding-bottom:0.3em;
+}
+
+.block-abonnement{
+display: flex
+}
+.form-unfollow{
+padding-left:3em;
+
+}
+.responsesearch{
+display:flex
+
+}
+.form-follow{
+padding-left:2em;
+}
+.form-search{
+padding-bottom:1em;
+}
+
+.btn-modified-ticket{
+left: 480px;
+top: 10px;
+position: relative;
+}
+
+.btn-modified-post{
+left: 480px;
+top: -50px;
+position: relative;
+}
+.btn-delete-post{
+left: 570px;
+top: -80px;
+position: relative;
+}
+.btn-modified{
+left: 480px;
+top: 50px;
+position: relative;
+}
+.btn-create-critique{
+left: 360px;
+top: 20px;
+position: relative;
+}
+.btn-delete-ticket{
+left: 580px;
+top: -19px;
+position: relative;
+}
+.btn-delete-ticket{
+left: 580px;
+top: -19px;
+position: relative;
+}
+
+
+.post-time{
+position: absolute;
+top: 130px;
+left: 500px;
+font-size:13px;
+}
+
+.post-time-ticket{
+position: absolute;
+top: 470px;
+left: 500px;
+font-size:13px;
+}
+
+.post-time-review{
+position: absolute;
+top: 10px;
+left: 500px;
+font-size:13px;
+}
+
+
+
+.head-review-posts{
+left: 20px;
+top: 10px;
+position: relative;
+}
+
+.body-review-flux{
+left: 20px;
+top: 15px;
+position: relative;
+}
+.body-review-posts{
+left: 20px;
+top: 15px;
+position: relative;
+}
+
+.descriptionpost{
+word-wrap: break-word;
+}
+
+.ticket{
+
+width: 500px;
+border:2px solid black;
+position: relative;
+left: 500px;
+top: 100px;
+padding-left:2em;
+padding-block:2em;
+}
+.critique{
+
+width: 500px;
+border:2px solid black;
+position: relative;
+left: 500px;
+top: 100px;
+padding-left:2em;
+padding-block:2em;
+}
+
+.button-createticket{
+left:310px;
+top:10px;
+position: relative;
+}
+.titlepost{
+left:20px;
+top:10px;
+position: relative;
+}
+
+.review-user-flux{
+left:20px;
+top:10px;
+position: relative;
+}
+
+.review-user-post{
+left:20px;
+top:10px;
+position: relative;
+}
+
+.post-user-head{
+left:20px;
+top:10px;
+position: relative;
+}
+
+.descriptionpost{
+left:20px;
+top:10px;
+position: relative;
+}
+.descriptionpost{
+left:20px;
+top:10px;
+position: relative;
+}
+
+
+#ticket-title{
+font-size:1.6em;
+left:590px;
+top:90px;
+position: relative;
+width:400px;
+}
+
+#critique-title{
+font-size:1.6em;
+left:590px;
+top:90px;
+position: relative;
+width:400px;
+}
+
+#btn-createticketcreate-critique{
+left: 400px;
+top: 100px;
+position: relative;
+width:1000px;
+}
+.button-create-critique{
+left: 40px;
+position: relative;
+width:200px;
+}
+.button-ask-critique{
+left: 5px;
+position: relative;
+width:357px;
+}
+
+#profile{
+left: 900px;
+top: 30px;
+width:202px;
+height:34px;
+position: relative;
+border:1px solid black;
+padding-top:3px;
+padding-left:3px;
+}
+
+#logoutuser{
+width: 500px;
+border:2px solid black;
+position: relative;
+left: 500px;
+top: 100px;
+padding-left:2em;
+padding-block:2em;
+padding-bottom:20px;
+}
+
+.r-object{
+left: 300px;
+top: 300px;
+width:900px;
+position: relative;
+}
+
+.review-ticket{
+border:2px solid black;
+margin-left:20px;
+margin-right:20px;
+height:280px;
+margin-top:30px;
+padding-top:0.6em;
+padding-left:0.6em;
+}
+
+.review-ticket-answer{
+border:2px solid black;
+margin-left:20px;
+margin-right:20px;
+height: 300px;
+}
+
+.review-ticket-user{
+border-top:2px solid black;
+padding-top:0.5em;
+padding-left:0.5em;
+}
+
+.post-time-answer{
+position: relative;
+top:-40px;
+left:230px;
+}
+.tilte-ticket-answer{
+position: relative;
+top:50px;
+left:40px;
+}
+
+.description-ticket-answer{
+position: relative;
+top:80px;
+left:40px;
+}

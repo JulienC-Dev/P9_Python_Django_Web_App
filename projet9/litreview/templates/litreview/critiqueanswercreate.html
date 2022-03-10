@@ -1,0 +1,45 @@
+{% extends "litreview/base.html" %}
+
+{% block content %}
+    <div class="modifier-critique-answer">
+        <h1 id="answer-critique-title">Vous êtes en train de répondre à {{ticket.user.username}}</h1>
+        <div class="review-ticket-answer">
+            <div class ="tilte-ticket-answer">
+                <label for = "{{ ticket.title.id_for_label }}"> Titre: </label>
+                {{ticket.title}}
+            </div>
+            <div class="description-ticket-answer">
+                <label for = "{{ ticket.description.id_for_label }}"> Description : </label>
+                {{ticket.description}}
+            </div>
+            <div class="post-time-answer">
+                <label for = "{{ ticket.time_created.id_for_label }}"></label>
+                {{ticket.time_created}}
+            </div>
+        </div>
+        <div class="modifier-critique">
+            <form method="post">
+                {% csrf_token %}
+                <div class ="answer-critique-titre">
+                <label  for ="{{ critique_form.headline.id_for_label }}" >Titre : </label>
+                {{ form.headline }}
+                </div>
+                <div class="rating-form-answer">
+                <label for ="{{ critique_form.rating.id_for_label }}" >Note : </label>
+                {% for rating in form.rating %}
+                    <span class="note-critique">
+                    {{ rating }}
+                    </span>
+                {% endfor %}
+                </div>
+                <div class ="commentaire-critique">
+                <label for = "{{ critique_form.body.id_for_label }}" >Commentaire : </label>
+                {{ form.body }}
+                </div>
+                <div class="btn-critique">
+                <button class ="button-critique-answer" type="submit" >Envoyer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

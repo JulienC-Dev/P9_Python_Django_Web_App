@@ -1,0 +1,46 @@
+{% extends "litreview/base.html" %}
+
+{% block content %}
+    <div class="abonnement">
+        <div class="searchuser">
+            <h1 class="titre">Suivi d'autres utilisateurs</h1>
+            <form action="" class="form-search">
+                 <label for="name">Entrer le nom: </label>
+                <input type="text" name="q">
+                <input type="submit">
+            </form>
+
+            <div class="responsesearch">
+                {% if object is not None %}
+                    <p> Souhaitez-vous suivre {{ object }}</p>
+                    <form method="POST" class="form-follow">
+                        {% csrf_token %}
+                        <button type="submit" name="follow" value="{{object}}">follow</button>
+                    </form>
+                {% elif message %}
+                    <p> {{ message }}</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="abonnements">
+            <h2 class="titre">Abonnements</h2>
+                {% for userfollow in userfollows %}
+                    <div class="block-abonnement">
+                        <p> Vous suivez actuellement {{ userfollow.user }}</p>
+                        <div class="followuser">
+                            <form method="POST" class="form-unfollow">
+                                {% csrf_token %}
+                                <button type="submit" name="unfollow" value="{{userfollow.user}}">unfollow</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor%}
+        </div>
+        <div class="abonnes">
+            <h3 class="titre">Abonnés</h3>
+            {% for userflollowing in userflollowings %}
+                <p> Vous êtes actuellement suivi par {{ userflollowing.followed_user }}</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "litreview/base.html" %}
+
+{% block content %}
+    {% for review in reviews %}
+        <div class="reviewposts">
+            <div class="post-user-head"><p> Vous avez publié une critique</p></div>
+            <div class="review-user-post">
+                <span>{{ review.headline }} - note:
+                {% if review.rating == 1 %}
+                    <span>★</span>
+                {% elif review.rating == 2  %}
+                    <span>★★</span>
+                {% elif review.rating == 3  %}
+                    <span>★★★</span>
+                {% elif review.rating == 4  %}
+                    <span>★★★★</span>
+                {% elif review.rating == 5  %}
+                    <span>★★★★★</span>
+                {% endif %}
+                </span>
+            </div>
+            <div class="body-review-posts">{{ review.body }}</div>
+            <div class="post-time-review">{{ review.time_created }}</div>
+            <div class="review-ticket">
+            <p>Vous avez publié un ticket</p>
+            <div class="titlepost">Titre : <p>{{ review.ticket.title }}</p></div>
+            <div class="descriptionpost">Description :<p>{{ review.ticket.description}}</p></div>
+            <div class="post-time"><p>{{ review.ticket.time_created }}</p></div>
+            </div>
+            <div class="btn-modificationpost">
+                <div>
+                    <a href="{% url 'litreview-modifiedanswercritique' review.id %}">
+                    <button class ="btn-modified-post" type="button">modifier</button></a>
+                </div>
+                <div>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <button class ="btn-delete-post" type="submit" name="delete-review"
+                                value="{{ review.id }}">supprimer</button>
+                    </form>
+                </div>
+            </div>
+            {% if user.username == review.user.username %}
+                <div class="review-ticket-user">
+                    <p>Vous avez publié un ticket</p>
+                    <div class="titlepost">Titre : <p>{{ review.ticket.title }}</p></div>
+                    <div class="descriptionpost">Description :<p>{{ review.ticket.description}}</p></div>
+                    <div class="post-time-ticket"><p>{{ review.ticket.time_created }}</p></div>
+                    <div class="btn-post-ticket">
+                        <div><a href="{% url 'litreview-modifiedticket' review.ticket.id %}">
+                            <button class ="btn-modified-ticket" type="button">modifier</button></a>
+                        </div>
+                        <div>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <button class ="btn-delete-ticket" type="submit" name="delete-ticket"
+                                        value="{{ review.ticket.id }}">supprimer</button>
+                            </form>
+                        </div>
+                    {% endif %}
+                    </div>
+                </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}

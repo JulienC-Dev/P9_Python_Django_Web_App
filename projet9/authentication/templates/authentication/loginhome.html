@@ -1,0 +1,23 @@
+{% extends "litreview/base.html" %}
+{% block content %}
+    <div class="home-page">
+        <div id="inscription">
+            <h1 class = "titre">Inscrivez-vous maintenant</h1>
+                <a href="{% url 'form-inscription' %}">
+                    <button class= "button-inscription" type="button">S'inscrire</button>
+                </a>
+        </div>
+        <div id= "connexion">
+            <h1 class = "titre">Connectez-vous</h1>
+            <div class="form-connexion">
+                <form method="post">
+                    {{ form.as_p }}
+                    {% csrf_token %}
+                    <button class ="button-connexion" type="submit" >Se connecter</button>
+                
+                </form>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

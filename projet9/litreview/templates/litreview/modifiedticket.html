@@ -1,0 +1,11 @@
+{% extends "litreview/base.html" %}
+
+{% block content %}
+    <div class="modifiedticket">
+        <form method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <button class ="button-createticket" type="submit" >Envoyer</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "litreview/base.html" %}
+
+{% block content %}
+    <div>
+        <h1 id="ticket-title">Demander une critique</h1>
+    </div>
+    <div class="ticket">
+        <form method="post">
+            {% csrf_token %}
+            <div class ="tilte-ticket">
+            <label for = "{{ form.title.id_for_label }}"> Titre: </label>
+            {{form.title}}
+            </div>
+            <div class="description-ticket">
+            <label for = "{{ form.description.id_for_label }}"> Description : </label>
+            {{form.description}}
+            </div>
+            <button class ="button-createticket" name="ticket-form"  type="submit" >Envoyer</button>
+        </form>
+    </div>
+{% endblock %}

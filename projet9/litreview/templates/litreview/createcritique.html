@@ -1,0 +1,36 @@
+{% extends "litreview/base.html" %}
+
+{% block content %}
+    <div>
+        <h1 id="critique-title">Créer une critique</h1>
+    </div>
+
+    <div class="critique">
+        <form method="post">
+            {% csrf_token %}
+            <div class ="tilte-ticket">
+            <label for = "{{ ticket_form.title.id_for_label }}"> Titre: </label>
+            {{ticket_form.title}}
+            </div>
+            <div class="description-ticket">
+            <label for = "{{ ticket_form.description.id_for_label }}"> Description : </label>
+            {{ticket_form.description}}
+            </div>
+            <div class="title-critique">
+            <label for ="{{ critique_form.headline.id_for_label }}" >Titre : </label>
+             {{ critique_form.headline }}
+            </div>
+            <label for ="{{ critique_form.rating.id_for_label }}" >Note : </label>
+            {% for rating in critique_form.rating %}
+                <span class="note-critique">
+                {{ rating }}
+                </span>
+            {% endfor %}
+            <div class ="commentaire-critique">
+            <label for = "{{ critique_form.body.id_for_label }}" >Commentaire : </label>
+            {{ critique_form.body }}
+            </div>
+            <button class="btn-create-critique" type="submit">Envoyer</button>
+        </form>
+    </div>
+{% endblock %}
