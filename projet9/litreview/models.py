@@ -33,6 +33,7 @@ class Review(models.Model):
     time_created = models.DateTimeField(auto_now_add=True)
     answer_review = models.BooleanField(default=False)
 
+
     def __str__(self):
         return 'ticket {} rating {} user {} headline {} body {} timecreated {} ' \
                'answer_review {}'.format(self.ticket, self.rating, self.user, self.headline,

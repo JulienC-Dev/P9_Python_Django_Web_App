@@ -170,6 +170,7 @@ position: relative;
 left: 360px;
 top: 100px;
 margin-block:3em;
+margin-bottom:15px;
 height:420px;
 }
 
@@ -309,6 +310,13 @@ left: 480px;
 top: 50px;
 position: relative;
 }
+
+.ticket-btn-modified{
+left: 520px;
+top: 200px;
+position : absolute;
+}
+
 .btn-create-critique{
 left: 360px;
 top: 20px;
@@ -339,6 +347,13 @@ top: 470px;
 left: 500px;
 font-size:13px;
 }
+.ticket-post-time{
+position : absolute;
+top: 20px;
+left: 520px;
+font-size:13px;
+}
+
 
 .post-time-review{
 position: absolute;
@@ -402,6 +417,13 @@ top:10px;
 position: relative;
 }
 
+.ticket-title-post{
+left:20px;
+top:10px;
+
+}
+
+
 .review-user-flux{
 left:20px;
 top:10px;
@@ -425,10 +447,10 @@ left:20px;
 top:10px;
 position: relative;
 }
-.descriptionpost{
+.ticket-description-post{
 left:20px;
 top:10px;
-position: relative;
+
 }
 
 
@@ -516,6 +538,21 @@ border-top:2px solid black;
 padding-top:0.5em;
 padding-left:0.5em;
 }
+
+.ticket-user{
+border:2px solid black;
+padding-top:1em;
+padding-left:1em;
+position : relative;
+left:360px;
+top:120px;
+width:700px;
+height:250px;
+margin-bottom:20px;
+}
+
+
+
 
 .post-time-answer{
 position: relative;

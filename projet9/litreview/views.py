@@ -7,18 +7,23 @@ from django.views.generic import CreateView, UpdateView, View
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from itertools import chain
+from django.contrib.contenttypes.models import ContentType
 
 
 class FluxView(LoginRequiredMixin, ListView):
     template_name = 'litreview/flux.html'
-    model = Review
-    context_object_name = 'reviews'
 
     def get_queryset(self):
         user_following_by = self.request.user.following_by.values('user')
-        qs_following = Review.objects.filter(user__in=user_following_by)
+        review_following = Review.objects.filter(user__in=user_following_by)
         user_review = Review.objects.filter(user=self.request.user)
-        qs = user_review.union(qs_following).order_by('-time_created')
+        qs_review = user_review.union(review_following)
+        ticket_following = Ticket.objects.filter(user__in=user_following_by)
+        user_ticket = Ticket.objects.filter(user=self.request.user)
+        qs_ticket = user_ticket.union(ticket_following)
+        posts = sorted(chain(qs_review, qs_ticket), key=lambda post: post.time_created, reverse=True)
+        qs = [{ContentType.objects.get_for_model(type(x)).name: x} for x in posts]
         return qs
 
 
@@ -80,7 +85,7 @@ class PostUserListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.request.user)
-        return Review.objects.filter(user=user)
+        return Review.objects.filter(user=user).order_by('-time_created')
 
     def post(self, request):
         try:
@@ -99,7 +104,7 @@ class TicketModifiedUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'litreview/modifiedticket.html'
     form_class = ModifiedTicket
     model = Ticket
-    success_url = reverse_lazy('litreview-flux')
+    success_url = reverse_lazy('litreview-posts')
 
 
 class AbonnementView(LoginRequiredMixin, View):

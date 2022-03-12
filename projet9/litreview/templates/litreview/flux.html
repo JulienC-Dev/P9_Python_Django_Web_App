@@ -15,39 +15,53 @@
         </a>
     </div>
     <div>
-        {% for review in reviews %}
-            <div class="reviewflux">
-                {% if user.username == review.user.username %}
+        {% for obj in object_list %}
+            {% if obj.ticket %}
+                <div class="ticket-user">
+                    <p>Vous avez publié un ticket</p>
+                    <div class="ticket-title-post">Titre : <p>{{ obj.ticket.title }}</p></div>
+                    <div class="ticket-description-post">Description :<p>{{ obj.ticket.description}}</p></div>
+                    <div class="ticket-post-time"><p>{{ obj.ticket.time_created }}</p></div>
+                     <div class="btn-modificationpost">
+                            <a href="{% url 'litreview-answercritique' obj.ticket.id %}">
+                                <button class ="ticket-btn-modified" type="button">Créer critique</button></a>
+                        </div>
+                    </div>
+                </div>
+            {% elif obj.review %}
+                <div class="reviewflux">
+                {% if user.username == obj.review.user.username %}
                     <div class="review-user-flux"><p> Vous avez publié une critique</p></div>
                 {% else %}
-                    <div class="review-user-flux"><p> {{review.user.username}} a publié une critique</p></div>
+                    <div class="review-user-flux"><p> {{obj.review.user.username}} a publié une critique</p></div>
                 {% endif %}
                 <div class="head-review-posts">
-                        <span>{{ review.headline }} - note:
-                        {% if review.rating == 1 %}
+                        <span>{{ obj.review.headline }} - note:
+                        {% if obj.review.rating == 1 %}
                             <span>★</span>
-                        {% elif review.rating == 2  %}
+                        {% elif obj.review.rating == 2  %}
                             <span>★★</span>
-                        {% elif review.rating == 3  %}
+                        {% elif obj.review.rating == 3  %}
                             <span>★★★</span>
-                        {% elif review.rating == 4  %}
+                        {% elif obj.review.rating == 4  %}
                             <span>★★★★</span>
-                        {% elif review.rating == 5  %}
+                        {% elif obj.review.rating == 5  %}
                             <span>★★★★★</span>
                         {% endif %}
                     </span>
                 </div>
-                <div class="body-review-flux">{{ review.body }}</div>
+                <div class="body-review-flux">{{ obj.review.body }}</div>
+                <div class="post-time-review">{{ obj.review.time_created }}</div>
                 <div class="review-ticket">
-                    {% if user.username == review.ticket.user.username %}
+                    {% if user.username == obj.review.ticket.user.username %}
                         <div class="review-user-flux" ><p>Vous avez publié un ticket</p></div>
                     {% else %}
-                        <div class="review-user-flux" ><p>Ticket - {{review.ticket.user.username}}</p></div>
+                        <div class="review-user-flux" ><p>Ticket - {{obj.review.ticket.user.username}}</p></div>
                     {% endif %}
-                    <div class="titlepost">Titre : <p>{{ review.ticket.title }}</p></div>
-                    <div class="descriptionpost">Description :<p>{{ review.ticket.description}}</p></div>
-                    <div class="post-time"><p>{{ review.ticket.time_created }}</p></div>
-                    {% if user.username != review.user.username and review.answer_review == False  %}
+                    <div class="titlepost">Titre : <p>{{ obj.review.ticket.title }}</p></div>
+                    <div class="descriptionpost">Description :<p>{{ obj.review.ticket.description}}</p></div>
+                    <div class="post-time"><p>{{ obj.review.ticket.time_created }}</p></div>
+                    {% if user.username != obj.review.user.username and obj.review.answer_review == False  %}
                         <div class="btn-modificationpost">
                             <a href="{% url 'litreview-answercritique' review.ticket.id %}">
                                 <button class ="btn-modified" type="button">Créer critique</button></a>
@@ -55,6 +69,8 @@
                     {% endif %}
                 </div>
             </div>
+            {% endif %}
         {% endfor %}
     </div>
+
 {% endblock %}
