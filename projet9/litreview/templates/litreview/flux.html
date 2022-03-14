@@ -9,7 +9,7 @@
     {% endif %}
     <div id = "btn-createticketcreate-critique">
         <a href="{% url 'litreview-createticket' %}">
-            <button class= "button-ask-critique" type="button">Demander une critique</button>
+            <button class= "button-ask-critique" type="button">Demander un avis</button>
         </a>
         <a href="{% url 'litreview-createcritique' %}">
             <button class= "button-create-critique" type="button">Créer une critique</button>
@@ -24,12 +24,12 @@
                     {% if obj.ticket.answer_review == False %}
                         <div class="btn-modificationpos-ticket">
                                 <a href="{% url 'litreview-answercritique' obj.ticket.id %}">
-                                    <button class ="ticket-btn-modified" type="button">Créer critique</button></a>
+                                    <button class ="ticket-btn-modified" type="button">Créer une critique</button></a>
                         </div>
                     {% elif user.username != obj.ticket.user.username and obj.ticket.answer_review == False %}
                         <div class="btn-modificationpos-ticket">
                                 <a href="{% url 'litreview-answercritique' obj.ticket.id %}">
-                                    <button class ="ticket-btn-modified" type="button">Créer critique</button></a>
+                                    <button class ="ticket-btn-modified" type="button">Créer une critique</button></a>
                         </div>
                     {% endif %}
                 </div>
@@ -39,12 +39,12 @@
                     {% if obj.review.answer_review == False %}
                         <div class="btn-modificationpost">
                             <a href="{% url 'litreview-answercritique' obj.review.ticket.id %}">
-                                <button class ="btn-modified-review" type="button">Créer critique</button></a>
+                                <button class ="btn-modified-review" type="button">Créer une critique</button></a>
                         </div>
                     {% elif user.username != obj.ticket.user.username and obj.review.answer_review == False %}
                         <div class="btn-modificationpost">
                             <a href="{% url 'litreview-answercritique' obj.review.ticket.id %}">
-                                <button class ="btn-modified-review" type="button">Créer critique</button></a>
+                                <button class ="btn-modified-review" type="button">Créer une critique</button></a>
                         </div>
                     {% endif %}
                 </div>

@@ -478,7 +478,6 @@ position: relative;
 .ticket-title-post{
 left:20px;
 top:10px;
-
 }
 
 
@@ -514,10 +513,10 @@ top:10px;
 
 #ticket-title{
 font-size:1.6em;
-left:590px;
+left:505px;
 top:90px;
 position: relative;
-width:400px;
+width:500px;
 }
 
 #critique-title{

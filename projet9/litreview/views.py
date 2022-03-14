@@ -36,7 +36,6 @@ class CreateTicketView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
-
         return super().form_valid(form)
 
 
@@ -124,7 +123,7 @@ class AbonnementView(LoginRequiredMixin, View):
             try:
                 user_object = User.objects.get(username=query)
             except:
-                message = 'l utilisateur n existe pas'
+                message = 'l\'utilisateur n existe pas'
                 return render(request, self.template_name, {'message': message,
                        'userfollows': self.request.user.following_by.all(),
                        'userflollowings': self.request.user.following.all()})
