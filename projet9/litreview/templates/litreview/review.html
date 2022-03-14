@@ -1,0 +1,37 @@
+{% block content %}
+  <div class="reviewflux">
+      {% if user.username == obj.review.user.username %}
+          <div class="review-user-flux"><p> Vous avez publié une critique</p></div>
+      {% else %}
+          <div class="review-user-flux"><p> {{obj.review.user.username}} a publié une critique</p></div>
+      {% endif %}
+      <div class="head-review-posts">
+          <span>{{ obj.review.headline }} - note:
+          {% if obj.review.rating == 1 %}
+              <span>★</span>
+          {% elif obj.review.rating == 2  %}
+              <span>★★</span>
+          {% elif obj.review.rating == 3  %}
+              <span>★★★</span>
+          {% elif obj.review.rating == 4  %}
+              <span>★★★★</span>
+          {% elif obj.review.rating == 5  %}
+              <span>★★★★★</span>
+          {% endif %}
+      </span>
+      </div>
+          <div class="body-review-flux">{{ obj.review.body }}</div>
+          <div class="post-time-review">{{ obj.review.time_created }}</div>
+          <div class="review-ticket">
+              {% if user.username == obj.review.ticket.user.username %}
+                  <div class="review-user-flux" ><p>Vous avez publié un ticket</p></div>
+              {% else %}
+                  <div class="review-user-flux" ><p>Ticket - {{obj.review.ticket.user.username}}</p></div>
+              {% endif %}
+              <div class="titlepost">Titre : <p>{{ obj.review.ticket.title }}</p></div>
+              <div class="descriptionpost">Description :<p>{{ obj.review.ticket.description}}</p></div>
+              <div class="post-time"><p>{{ obj.review.ticket.time_created }}</p></div>
+          </div>
+
+    </div>
+{% endblock %}

@@ -8,6 +8,7 @@ class Ticket(models.Model):
     description = models.TextField(max_length=128)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     time_created = models.DateTimeField(auto_now_add=True)
+    answer_review = models.BooleanField(default=False)
 
     def __str__(self):
         return 'titre: {} description : {} date :{}'.format(self.title, self.description, self.time_created)
@@ -32,7 +33,6 @@ class Review(models.Model):
     body = models.TextField(max_length=8192, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
     answer_review = models.BooleanField(default=False)
-
 
     def __str__(self):
         return 'ticket {} rating {} user {} headline {} body {} timecreated {} ' \

@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render, redirect
+from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from .models import Review, Ticket
 from authentication.models import User
@@ -17,12 +17,13 @@ class FluxView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         user_following_by = self.request.user.following_by.values('user')
         review_following = Review.objects.filter(user__in=user_following_by)
+        review_answer = Review.objects.exclude(user=self.request.user).filter(ticket__user=self.request.user)
         user_review = Review.objects.filter(user=self.request.user)
         qs_review = user_review.union(review_following)
         ticket_following = Ticket.objects.filter(user__in=user_following_by)
         user_ticket = Ticket.objects.filter(user=self.request.user)
         qs_ticket = user_ticket.union(ticket_following)
-        posts = sorted(chain(qs_review, qs_ticket), key=lambda post: post.time_created, reverse=True)
+        posts = sorted(chain(qs_review, qs_ticket, review_answer), key=lambda post: post.time_created, reverse=True)
         qs = [{ContentType.objects.get_for_model(type(x)).name: x} for x in posts]
         return qs
 
@@ -35,6 +36,7 @@ class CreateTicketView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+
         return super().form_valid(form)
 
 
@@ -56,7 +58,8 @@ class CritiqueAnswerCreateview(LoginRequiredMixin, CreateView):
         ticket_obj = self.get_object()
         form.instance.ticket = ticket_obj
         form.instance.user = self.request.user
-        Review.objects.filter(ticket=ticket_obj).update(answer_review=True)
+        ticket_obj.answer_review = True
+        ticket_obj.save()
         form.instance.answer_review = True
         return super().form_valid(form)
 
@@ -79,13 +82,15 @@ class CritiqueAnswerModified(LoginRequiredMixin, UpdateView):
 
 class PostUserListView(LoginRequiredMixin, ListView):
     template_name = 'litreview/postuser.html'
-    model = Review
-    context_object_name = 'reviews'
     success_url = reverse_lazy('litreview-posts')
 
     def get_queryset(self):
-        user = get_object_or_404(User, username=self.request.user)
-        return Review.objects.filter(user=user).order_by('-time_created')
+        user_review = Review.objects.filter(user=self.request.user)
+        user_ticket = Ticket.objects.filter(user=self.request.user)
+
+        posts = sorted(chain(user_review, user_ticket), key=lambda post: post.time_created, reverse=True)
+        qs = [{ContentType.objects.get_for_model(type(x)).name: x} for x in posts]
+        return qs
 
     def post(self, request):
         try:
@@ -164,8 +169,10 @@ def ticket_create(request):
         critique_form = CreateCritique(request.POST)
         if ticket_form.is_valid() and critique_form.is_valid():
             ticket_form.instance.user = request.user
+            ticket_form.instance.answer_review = True
             ticket = ticket_form.save()
             critique_form.instance.ticket = ticket
+            critique_form.instance.answer_review = True
             critique_form.instance.user = request.user
             critique_form.save()
             return redirect('litreview-flux')

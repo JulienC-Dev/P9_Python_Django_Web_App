@@ -1,0 +1,12 @@
+{% block content %}
+    <div class="ticket-user">
+        {% if user.username == obj.ticket.user.username %}
+            <p>Vous avez publié un ticket</p>
+        {% else %}
+            <p> {{obj.ticket.user.username}} a publié une critique</p>
+        {% endif %}
+        <div class="ticket-title-post">Titre : <p>{{ obj.ticket.title }}</p></div>
+        <div class="ticket-description-post">Description :<p>{{ obj.ticket.description}}</p></div>
+        <div class="ticket-post-time"><p>{{ obj.ticket.time_created }}</p></div>
+    </div>
+{% endblock %}
